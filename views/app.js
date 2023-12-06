@@ -1,5 +1,6 @@
 //code from https://github.com/MuhammadMoiz200099/CRUD---Javascript-HTML5-CSS3/blob/master/app.js
 //using to test UI
+/*
 let edit_record_id = -1;
 
 window.onload = function loadScreen() {
@@ -18,7 +19,7 @@ function loadDataFromLocalStorage() {
                 <td>${data.name}</td>
                 <td>${data.age}</td>
                 <td><button onclick="updateDataFromLocalStorage('${data.record_id
-        }')" class="btn btn-info">Edit</button></td>
+        }')" class="btn btn-info">Update</button></td>
                 <td><button onclick = "deleteItem('${data.id
                 }')" class = btn btn-delete>Delete</button</td>
             </tr>
