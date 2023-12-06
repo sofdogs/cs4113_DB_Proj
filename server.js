@@ -34,13 +34,12 @@ connection.connect((err) => {
   console.log('Connected to the database');
 });
 
-
-
 // ROUTES 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
+//SELECT QUERY
 // Endpoint to handle the HTTP request for retrieving data from the MySQL table
 app.get('/getData', (req, res) => {
   // Perform the database query to retrieve data from the table
@@ -56,6 +55,36 @@ app.get('/getData', (req, res) => {
   });
 });
 
+//INSERT QUERY
+app.post('/insertData', (req, res) => {
+  // Get data from the request body
+  const { name, age } = req.body;
+  
+  const query = 'INSERT INTO users (name, age) VALUES  (?, ?)';
+  connection.query(query, [name, age], (err, results) => {
+    if (err) {
+      console.error('Error inserting data:', err);
+      return res.status(500).send('Internal Server Error');
+    }
+
+    // Data inserted successfully
+    return res.status(200).send('Data inserted successfully');
+  });
+});
+
+app.post('/deleteData:id', (req, res) => { 
+  const query = 'DELETE FROM users WHERE id = ?';
+  connection.query(query, [id], (err, results) => {
+    if (err) {
+      console.error('Error deleting data:', err);
+      return res.status(500).send('Internal Server Error');
+    }
+
+    // Data deleted successfully
+    res.redirect('views/index.html')
+    return res.status(200).send('Data deleted successfully');
+  });
+});
 // Close the database connection when the application is terminated
 process.on('SIGINT', () => {
   connection.end();
