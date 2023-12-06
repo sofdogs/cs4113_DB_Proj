@@ -3,9 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Homepage</title>
+    <link rel="stylesheet" href="index.css" />
+    <title>CRUD DB APP</title>
 </head>
 <body>
-    <h1>Welcome</h1>
+    <h1> Insert, View, Edit, and Delete Records </h1>
+    <div class="page-container">
+        <div class = "content-container">
+            <!---Showing existing table context-->
+            <div class="table-container">
+                <h3>View Records:</h3>
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th scope="col">ID#</th>
+                            <th scope="col">NAME</th>
+                            <th scope="col">AGE</th>
+                            <th scope="col">DELETE</th>
+                        </tr>
+                        <!--For selecting db data: 
+                        <%tablename.forEach(function(tablename, index){ %>
+                            <tr>
+                                <td><% index + 1%></td>
+                                <td><% tablename.name%></td>
+                                <td><% tablename.age%></td>
+                                <td><button onclick="updateDataFromLocalStorage('${tablename.index}')" class="btn btn-info">Update</button></td>
+                                <td><button onclick = "deleteItem('${tablename.index}')" class = btn btn-delete>Delete</button</td>
+                            </tr>
+                        <& }); %>
+                        <%} else {%>
+                            <td colspan="7">No Data Found</td>
+                            </tr>
+                        <% } %> -->
+                    </thead>
+                 <tbody id="generatedTableData"></tbody>
+                </table>
+            </div>
+            <!---For inserting/updating table context-->
+            <div class="form-container">
+                <h2>Insert New Data</h2>
+                <form id = "addForm"> 
+                    <label for = "name">Name:</label>
+                    <input type="text" class="form-control" id="name" name = "name" required/>
+                    <label for ="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+                    <button id="insert-btn" type="submit" onclick="createNewRecord()" class="btn btn-success">Insert</button>
+                </form>
+            </div>
+
+            <div class="form-container">
+                <h2>Update Data</h2>
+                <form id = "addForm"> 
+                    <label for = "name">Name:</label>
+                    <input type="text" class="form-control" id="name" name = "name" required/>
+                    <label for ="age">Age:</label>
+                    <input type="number" id="age" name="age" required>
+                    <button id="update-btn" type="submit" onclick="updateRecord()" class="btn btn-success">Update</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="./app.js"></script>
 </body>
 </html>
